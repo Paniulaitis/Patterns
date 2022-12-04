@@ -3,6 +3,7 @@ package helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -58,5 +59,9 @@ public class WaitHelper {
     public static void firstProductMustBe(By webElement, String product) {
         webDriverWait.until((ExpectedCondition<Boolean>) webDriver ->
                 webDriver.findElement(webElement).getText().contains(product));
+    }
+
+    public static void ignoringClickabilityOfElement(WebElement webElement, WebDriver driver) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

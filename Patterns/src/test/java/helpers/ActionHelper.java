@@ -20,6 +20,7 @@ public class ActionHelper {
 
     // Перемещение курсора мыши на элемент
     public static void moveToElement(WebElement webElement) {
+        WaitHelper.clickabilityOfElement(webElement);
         actions.moveToElement(webElement).perform();
     }
 }
