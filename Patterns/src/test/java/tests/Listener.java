@@ -19,7 +19,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Listener implements WebDriverListener {
-
+    protected static Actions actions;
     String months[] = {"Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен",
             "Окт", "Ноя", "Дек"};
 
@@ -29,10 +29,12 @@ public class Listener implements WebDriverListener {
 
     @Override
     public void afterFindElement(WebDriver driver, By locator, WebElement result) {
+        logger.info("Найден веб элемент " + locator);
+        /*
         GregorianCalendar gCalendar = new GregorianCalendar();
         pathName = "temp\\" + months[gCalendar.get(Calendar.MONTH)]+ " " + gCalendar.get(Calendar.DATE) + " " +
                 gCalendar.get(Calendar.HOUR) + "-" + gCalendar.get(Calendar.MINUTE) + "-" + gCalendar.get(Calendar.SECOND) + ".png";
-        logger.info("Найден веб элемент " + locator);
+
 
         try {
             Screenshot screenshot = new AShot()
@@ -47,14 +49,18 @@ public class Listener implements WebDriverListener {
         new Actions(driver)
                 .moveToElement(result)
                 .perform();
+
+         */
     }
 
     @Override
     public void afterFindElements(WebDriver driver, By locator, List<WebElement> result) {
-        GregorianCalendar gCalendar = new GregorianCalendar();
-        pathName = "temp\\" + months[gCalendar.get(Calendar.MONTH)] + " " + gCalendar.get(Calendar.YEAR) + " " +
-                gCalendar.get(Calendar.HOUR) + "-" + gCalendar.get(Calendar.MINUTE) + "-" + gCalendar.get(Calendar.SECOND) + ".png";
         logger.info("Найдены веб элементы " + locator);
+        /*
+        GregorianCalendar gCalendar = new GregorianCalendar();
+        pathName = "temp\\" + months[gCalendar.get(Calendar.MONTH)]+ " " + gCalendar.get(Calendar.DATE) + " " +
+                gCalendar.get(Calendar.HOUR) + "-" + gCalendar.get(Calendar.MINUTE) + "-" + gCalendar.get(Calendar.SECOND) + ".png";
+
 
         try {
             Screenshot screenshot = new AShot()
@@ -69,6 +75,8 @@ public class Listener implements WebDriverListener {
         new Actions(driver)
                 .scrollToElement(result.get(0))
                 .perform();
+
+         */
     }
 
     @Override

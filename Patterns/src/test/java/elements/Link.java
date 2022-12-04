@@ -10,6 +10,8 @@ import pages.StartPage;
 
 // Класс "Ссылка"
 public class Link extends BaseElement {
+
+
     // Конструктор
     public Link(WebElement webElement) {
         super(webElement);
@@ -25,12 +27,18 @@ public class Link extends BaseElement {
     // Нажатие на ссылку после перезагрузки страницы
     public void click(WebDriver driver) {
         // Ожидание кликабельности ссылки
-        WaitHelper.ignoringClickabilityOfElement(webElement, driver);
+        WaitHelper.ignoringExceptionClickabilityOfElement(webElement, driver);
         webElement.click();
     }
 
     // Наведение курсора мыши на ссылку
     public void focusOnLink() {
+        ActionHelper.moveToElement(webElement);
+    }
+
+    // Наведение на ссылку после перезагрузки страницы
+    public void focusOnLink(WebDriver driver) {
+        WaitHelper.ignoringExceptionClickabilityOfElement(webElement, driver);
         ActionHelper.moveToElement(webElement);
     }
 

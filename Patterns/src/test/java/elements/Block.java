@@ -17,4 +17,8 @@ public class Block extends BaseElement {
     public void hide() {
         JavaScriptHelper.displayNone(webElement);
     }
+
+    public void block() {
+        JavaScriptHelper.block(webElement);
+    }
 }

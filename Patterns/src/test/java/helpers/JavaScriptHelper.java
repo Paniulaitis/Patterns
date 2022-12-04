@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Vector;
 
 // Класс для выполнения скриптов на JavaScript
 public class JavaScriptHelper {
@@ -19,6 +21,29 @@ public class JavaScriptHelper {
     // Инициализация исполнителя JavaScript скриптов
     public static void init(WebDriver driver) {
         javascriptExecutor = (JavascriptExecutor) driver;
+    }
+
+    public static Long getPositionY() {
+        Long valueY = (Long) javascriptExecutor.executeScript("return window.pageYOffset;");
+        // Добавление задержки
+        try {
+            Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return valueY;
+    }
+
+    public static void scroll(Long x, Long  y) {
+        String script = "window.scroll(" + x + ", " + y + ");";
+        javascriptExecutor.executeScript(script);
+        // Добавление задержки
+        try {
+            Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Скролл страницы на заданное расстояние в пикселях по X и по Y
@@ -36,6 +61,17 @@ public class JavaScriptHelper {
     // Установка невидимости веб элемента
     public static void displayNone(WebElement element) {
         String script = "arguments[0].style.display='none';";
+        javascriptExecutor.executeScript(script, element);
+        // Добавление задержки
+        try {
+            Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void block(WebElement element) {
+        String script = "arguments[0].style.display='block';";
         javascriptExecutor.executeScript(script, element);
         // Добавление задержки
         try {

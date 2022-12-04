@@ -61,7 +61,7 @@ public class WaitHelper {
                 webDriver.findElement(webElement).getText().contains(product));
     }
 
-    public static void ignoringClickabilityOfElement(WebElement webElement, WebDriver driver) {
+    public static void ignoringExceptionClickabilityOfElement(WebElement webElement, WebDriver driver) {
         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

@@ -27,6 +27,9 @@ public class StartPage extends BasePage {
     //
     @FindBy(xpath = "//div[@class='v-confirm-city']")
     private WebElement blockYes;
+
+    @FindBy(xpath = "//div[@class='menu-desktop__submenu menu-desktop__submenu_top']")
+    private WebElement blockSubmenu;
     //
     @FindBy(xpath = "(//a[contains(text(), \"ПК, ноутбуки, периферия\")])[1]")
     private WebElement linkPCLaptopsPeripherals;
@@ -56,6 +59,7 @@ public class StartPage extends BasePage {
     public StartPage(WebDriver driver) {
         // Вызов родительского конструктора
         super(driver);
+
         // Инициализация веб элементов
         PageFactory.initElements(driver, this);
     }
@@ -75,6 +79,10 @@ public class StartPage extends BasePage {
 
     public Button buttonYes() {
         return new Button(buttonYes);
+    }
+
+    public Block blockSubmenu() {
+        return new Block(blockSubmenu);
     }
 
     public Link linkPCLaptopsPeripherals() {

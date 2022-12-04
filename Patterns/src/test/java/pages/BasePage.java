@@ -2,12 +2,16 @@ package pages;
 
 import helpers.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import tests.Listener;
 
 import java.time.Duration;
 
 public class BasePage {
     // Драйвер браузера
     protected static WebDriver driver;
+
+
 
     // Конструктор базового класса
     public BasePage(WebDriver driver) {

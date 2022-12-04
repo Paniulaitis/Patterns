@@ -14,6 +14,8 @@ import tests.laptops.matchers.LaptopProductPageMatcher;
 
 public class HW3Case3Test extends BaseTest {
 
+    ScreenshotMaker screenshotMaker = new ScreenshotMaker();
+
     @Test
     public void dnsTest() {
         // 1. Arrange
@@ -35,19 +37,23 @@ public class HW3Case3Test extends BaseTest {
     public LaptopsProductPage getProductPage(String company, String ram) {
 
         // ***** Стартовая страница сайта DNS *****
-        StartPage startPage = new StartPage(driver);
+        StartPage startPage = new StartPage(eventFiringWebDriver);
         // Открыть страницу https://www.dns-shop.ru/
         startPage.openPage();
+        screenshotMaker.TakeScreenshot(driver);
         // Наведение курсора мыши на ссылку "ПК, ноутбуки, периферия"
         startPage.linkPCLaptopsPeripherals().focusOnLink();
+        screenshotMaker.TakeScreenshot(driver);
         // Нажатие на ссылку "Ноутбуки"
         startPage.linkLaptops().click();
+        screenshotMaker.TakeScreenshot(driver);
 
 
         // ***** Страница "Ноутбуки" *****
-        LaptopsPage laptopsPage = new LaptopsPage(driver);
+        LaptopsPage laptopsPage = new LaptopsPage(eventFiringWebDriver);
         //Скрыть блок страницы
         laptopsPage.blockHeader().hide();
+        screenshotMaker.TakeScreenshot(driver);
         // Прокрутка страницы вниз
         JavaScriptHelper.scrollBy(0, 600);
         // Установка фильтра "Производитель"
@@ -64,6 +70,7 @@ public class HW3Case3Test extends BaseTest {
         JavaScriptHelper.scrollBy(0, 600);
         // Нажатие на кнопку "Применить"
         laptopsPage.buttonApply().click();
+        screenshotMaker.TakeScreenshot(driver);
         // Прокрутка страницы вверх
         JavaScriptHelper.scrollBy(0, -2000);
         // Отображение сортировки
@@ -73,14 +80,17 @@ public class HW3Case3Test extends BaseTest {
         laptopsPage.radiobuttonSort(type).setSelected(true);
         // Ожидание
         WaitHelper.firstProductMustBe(By.xpath("//div[@class='catalog-products view-simple']//div[1]"), "ASUS");
+        screenshotMaker.TakeScreenshot(driver);
         // Нажатие на ссылку первого продукта в списке
         laptopsPage.linkFirstProduct().openInNewWindow();
+        screenshotMaker.TakeScreenshot(driver);
 
         // ***** Страница "Продукт. Ноутбуки" *****
         LaptopsProductPage laptopsProductPage = new LaptopsProductPage(driver);
         //Открыть характеристики
         laptopsProductPage.accordeonСharacteristics().show();
+        screenshotMaker.TakeScreenshot(driver);
         // ***** Страница "Продукт. Ноутбуки" *****
-        return new LaptopsProductPage(driver);
+        return new LaptopsProductPage(eventFiringWebDriver);
     }
 }
